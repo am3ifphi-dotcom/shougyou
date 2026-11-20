@@ -347,6 +347,9 @@ function waitForInput(ms) {
 window.addEventListener('error', (e) => {
   console.error('[shattered-crown]', e.error || e.message);
 });
-window.__SC_DEBUG__ = { runtime, input, bootLog, getSave, clearSave, openOptions, goTitle };
+window.__SC_DEBUG__ = {
+  runtime, input, bootLog, getSave, clearSave, openOptions, goTitle,
+  startRun: (seed = 12345) => launchRun({ seed, resume: null }),
+};
 
 main();

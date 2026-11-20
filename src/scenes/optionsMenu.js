@@ -118,7 +118,7 @@ export class OptionsMenu {
 
     rule(TOP + 200);
 
-    this.controls = text('', { size: 6, font: 'pixel', fill: COLORS.boneDim, align: 'center', anchor: 0.5, lineHeight: 9 });
+    this.controls = text('', { size: 6, font: 'pixel', fill: 0x9a8c78, align: 'center', anchor: 0.5, lineHeight: 9 });
     this.controls.y = TOP + 223;
     this.box.addChild(this.controls);
 
@@ -127,6 +127,7 @@ export class OptionsMenu {
 
   open() {
     this.node.visible = true;
+    this.alpha = 0;
     this.t = 0;
     this.index = 0;
     this.refresh();
@@ -224,6 +225,9 @@ export class OptionsMenu {
     if (!this.node.visible) return;
     this.t += dtMs;
     const k = Math.min(1, this.t / 200);
+    // fade the whole overlay, not just the panel, so it never pops over the
+    // frozen frame during the first few frames
+    this.alpha = k;
     this.box.alpha = k;
     this.box.scale.set(0.97 + 0.03 * k);
     this.sliders.forEach((s) => s.update(dtMs));

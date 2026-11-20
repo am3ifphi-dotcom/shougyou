@@ -91,7 +91,7 @@ const FALLBACK_TEXTURE = {
   fx_burst: proc.burstTexture,
   fx_smoke: proc.smokeTexture,
   fx_fog: proc.fogTexture,
-  fx_blood: () => proc.glowTexture(24, '142,31,47'),
+  fx_blood: proc.bloodTexture,
   // ui
   ui_panel: () => proc.panelTexture(100, 100),
   ui_panel_inset: () => proc.panelTexture(93, 93),
@@ -105,6 +105,19 @@ const FALLBACK_TEXTURE = {
   ui_arrow: () => proc.inputIconTexture('confirm'),
   logo_title: proc.skullTexture,
 };
+
+/**
+ * Ids that must never use the downloaded file.
+ *
+ * The DawnLike sheet only exposes effect sprites as multi-frame strips with a
+ * shared palette bank, and the single frames we could extract read as props
+ * (an X, a scroll) rather than particles.  These are generated instead, which
+ * also keeps particles tintable and cheap.
+ */
+const PROCEDURAL_ONLY = new Set([
+  'fx_burst', 'fx_smoke', 'fx_blood',
+  'fx_sparks_a', 'fx_sparks_b', 'item_soul',
+]);
 
 const imageLoad = [];
 
@@ -132,6 +145,14 @@ export async function ensureTexture(id) {
 
   const p = (async () => {
     const rec = entry(id);
+    // ids drawn in code (particles, soul shard) never touch the network
+    if (PROCEDURAL_ONLY.has(id) || rec?.status === State.GENERATED) {
+      const make = FALLBACK_TEXTURE[id];
+      const tex = make ? make() : Texture.WHITE;
+      cache.set(id, tex);
+      markStatus(id, State.GENERATED);
+      return tex;
+    }
     if (!rec) return fallbackTexture(id, 'not in manifest');
     if (rec.status === State.FALLBACK || rec.status === State.MISSING) {
       return fallbackTexture(id, 'manifest marks it unavailable');

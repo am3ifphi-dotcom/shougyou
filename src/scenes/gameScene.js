@@ -141,11 +141,13 @@ export class GameScene {
       this.flash.flash(0xc8414a, 180, 0.28);
       this.hud.onEvent(ev);
     } else if (ev.type === 'boss-spawn') {
+      this.hud.onEvent(ev); // raises the boss health bar
       this.banner.show('THE SHATTERED WARDEN', 'A BROKEN KING RISES', 2600);
       this.timefx.slowmo(700, 0.35);
       this.bossMusicOn = true;
       playMusic('bgm_boss', { fade: 1800 });
     } else if (ev.type === 'boss-died') {
+      this.hud.onEvent(ev); // drops the boss bar as it dies
       this.completeRun(true);
     } else if (ev.type === 'player-died') {
       this.completeRun(false);

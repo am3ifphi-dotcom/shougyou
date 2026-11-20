@@ -99,6 +99,8 @@ export class CreditsScene {
       this.roll.addChild(it.node);
       y += it.height + it.gap;
     }
+    // roll.y is the scroll offset; every item starts below the frame
+    this.roll.y = 0;
     this.rollLength = y - VIEW_H;
     this.finished = false;
 
@@ -115,9 +117,15 @@ export class CreditsScene {
     }
     this.node.addChild(fadeBottom);
 
+    // opaque footer strip so the scrolling roll never collides with the hint
+    const footerBar = new Graphics();
+    footerBar.rect(0, VIEW_H - FOOTER, VIEW_W, FOOTER).fill({ color: 0x05040a, alpha: 1 });
+    footerBar.rect(0, VIEW_H - FOOTER, VIEW_W, 1).fill({ color: 0x2a2118, alpha: 0.9 });
+    this.node.addChild(footerBar);
+
     this.footer = text('', { size: 8, font: 'pixel', fill: COLORS.boneDim, anchor: 0.5 });
     this.footer.x = VIEW_W / 2;
-    this.footer.y = VIEW_H - 12;
+    this.footer.y = VIEW_H - FOOTER + 11;
     this.node.addChild(this.footer);
 
     this.scrollbar = new Graphics();

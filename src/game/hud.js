@@ -31,43 +31,43 @@ export class HUD {
     this.vitals.y = MARGIN - 8;
     this.root.addChild(this.vitals);
 
-    this.vitals.addChild(hudPlate(150, 58, { fill: 0x120e16, fillAlpha: 0.86 }));
+    this.vitals.addChild(hudPlate(144, 52, { fill: 0x120e16, fillAlpha: 0.88 }));
 
     // portrait medallion
     const portrait = new Sprite(get('hero_warrior_s'));
-    portrait.width = 26;
-    portrait.height = 26;
-    portrait.x = 6;
-    portrait.y = 8;
+    portrait.width = 24;
+    portrait.height = 24;
+    portrait.x = 5;
+    portrait.y = 7;
     this.vitals.addChild(portrait);
     const ringG = new Graphics();
-    ringG.circle(19, 21, 15).stroke({ width: 1.5, color: 0xc9a06a, alpha: 0.85 });
+    ringG.circle(17, 19, 13.5).stroke({ width: 1.4, color: 0xc9a06a, alpha: 0.85 });
     this.vitals.addChild(ringG);
 
     // Two stacked bars, each with its number right-aligned inside the trough:
     // no labels floating over the frame, nothing overlapping the medallion.
-    this.hpBar = new StatBar({ width: 64, height: 9, fillTint: 0xd8484f, ghostColor: 0xffd9a0 });
-    this.hpBar.x = 40;
-    this.hpBar.y = 9;
+    this.hpBar = new StatBar({ width: 62, height: 8, fillTint: 0xd8484f, ghostColor: 0xffd9a0 });
+    this.hpBar.x = 38;
+    this.hpBar.y = 8;
     this.vitals.addChild(this.hpBar);
-    this.mpBar = new StatBar({ width: 64, height: 9, fillTex: 'ui_bar_blue', fillTint: 0x6fd3d8, ghostColor: 0xbfeff6 });
-    this.mpBar.x = 40;
-    this.mpBar.y = 22;
+    this.mpBar = new StatBar({ width: 62, height: 8, fillTex: 'ui_bar_blue', fillTint: 0x6fd3d8, ghostColor: 0xbfeff6 });
+    this.mpBar.x = 38;
+    this.mpBar.y = 20;
     this.vitals.addChild(this.mpBar);
 
     // numbers sit beside the troughs, right of the fills
     this.hpReadout = text('100/100', { size: 7, font: 'pixel', fill: COLORS.bone });
-    this.hpReadout.x = 108;
-    this.hpReadout.y = 10;
+    this.hpReadout.x = 104;
+    this.hpReadout.y = 9;
     this.vitals.addChild(this.hpReadout);
     this.mpReadout = text('60/60', { size: 7, font: 'pixel', fill: COLORS.ghost });
-    this.mpReadout.x = 108;
-    this.mpReadout.y = 23;
+    this.mpReadout.x = 104;
+    this.mpReadout.y = 21;
     this.vitals.addChild(this.mpReadout);
 
-    this.levelText = text('LV 1', { size: 8, font: 'pixel', fill: COLORS.gold, anchorX: 1 });
-    this.levelText.x = 112;
-    this.levelText.y = 42;
+    this.levelText = text('LV 1', { size: 7, font: 'pixel', fill: COLORS.gold, anchorX: 1 });
+    this.levelText.x = 104;
+    this.levelText.y = 34;
     this.vitals.addChild(this.levelText);
 
     /* --- objective, top-centre -------------------------------------- */
@@ -122,11 +122,13 @@ export class HUD {
     this.slots.x = VIEW_W / 2;
     this.slots.y = VIEW_H - 42;
     this.root.addChild(this.slots);
+    // Icons are drawn glyphs, not sprite stand-ins: a sword, a flame, a roll
+    // arrow and a flask read instantly at 16px where zoomed props do not.
     this.slotDefs = [
-      { key: input.prompt('attack', 'J'), icon: 'ui_cursor', label: 'SLASH' },
-      { key: input.prompt('cast', 'K'), icon: 'fx_burst', label: 'EMBER' },
-      { key: input.prompt('dash', 'SHIFT'), icon: 'fx_smoke', label: 'ROLL' },
-      { key: input.prompt('interact', 'E'), icon: 'item_potion_hp', label: 'FLASK' },
+      { key: 'J', glyph: 'sword', label: 'SLASH' },
+      { key: 'K', glyph: 'flame', label: 'EMBER' },
+      { key: 'SHIFT', glyph: 'roll', label: 'ROLL' },
+      { key: 'E', glyph: 'flask', label: 'FLASK' },
     ];
     this.slotNodes = [];
     const slotW = 34;
@@ -138,11 +140,9 @@ export class HUD {
       const plate = new Graphics();
       plate.roundRect(0, 0, slotW, slotW, 3).fill({ color: 0x140f18, alpha: 0.86 }).stroke({ width: 1, color: 0x8a6a44 });
       g.addChild(plate);
-      const icon = new Sprite(get(def.icon));
-      icon.width = 16;
-      icon.height = 16;
-      icon.x = slotW / 2 - 8;
-      icon.y = 6;
+      const icon = this.slotGlyph(def.glyph);
+      icon.x = slotW / 2;
+      icon.y = 14;
       g.addChild(icon);
       const cap = glyphCap(def.key.replace(/[[\]]/g, '').slice(0, 5));
       cap.x = 3;
@@ -159,9 +159,9 @@ export class HUD {
     /* --- tutorial / prompt line, bottom-left ----------------------- */
     this.promptBox = new Container();
     this.promptBox.x = MARGIN;
-    this.promptBox.y = VIEW_H - 13;
+    this.promptBox.y = VIEW_H - 14;
     this.root.addChild(this.promptBox);
-    this.promptTxt = text('', { size: 8, font: 'pixel', fill: COLORS.boneDim, alpha: 0.9 });
+    this.promptTxt = text('', { size: 7, font: 'pixel', fill: COLORS.boneDim, alpha: 0.95 });
     this.promptBox.addChild(this.promptTxt);
     this.promptT = 0;
 
@@ -178,11 +178,11 @@ export class HUD {
     this.bossBox.y = VIEW_H - 62;
     this.bossBox.visible = false;
     this.root.addChild(this.bossBox);
-    this.bossName = text('THE SHATTERED WARDEN', { size: 11, font: 'title', fill: COLORS.arcane, anchor: 0.5, letterSpacing: 2 });
+    this.bossName = text('THE SHATTERED WARDEN', { size: 10, font: 'title', fill: COLORS.bone, anchor: 0.5, letterSpacing: 2, stroke: 0x0b0810, strokeWidth: 2 });
     this.bossName.y = -12;
     this.bossBox.addChild(this.bossName);
-    this.bossBar = new StatBar({ width: 220, height: 8, fillTint: 0xc8414a, ghostColor: 0xffffff });
-    this.bossBar.x = -110;
+    this.bossBar = new StatBar({ width: 168, height: 7, fillTint: 0xc8414a, ghostColor: 0xffffff });
+    this.bossBar.x = -84;
     this.bossBox.addChild(this.bossBar);
 
     /* --- combat vignette flash ------------------------------------- */
@@ -237,16 +237,44 @@ export class HUD {
     });
   }
 
+  /**
+   * Contextual hints only. The full control legend lives in OPTIONS and the
+   * slot row already shows the bound keys, so the HUD never repeats them.
+   */
+  /** 16x16 icon in the palette of the UI, centred on the caller's origin. */
+  slotGlyph(kind) {
+    const g = new Graphics();
+    if (kind === 'sword') {
+      g.rect(-1, -7, 2, 10).fill({ color: 0xdfe6f2 });
+      g.rect(-1, -7, 1, 10).fill({ color: 0xffffff });
+      g.rect(-4, 3, 8, 1.5).fill({ color: 0xd8a94e });
+      g.rect(-1.5, 4.5, 3, 3).fill({ color: 0x8a5a2a });
+    } else if (kind === 'flame') {
+      g.poly([0, -8, 4, -2, 5, 3, 0, 7, -5, 3, -4, -2]).fill({ color: 0xd8642c });
+      g.poly([0, -4, 2.5, 0, 0, 5, -2.5, 0]).fill({ color: 0xffc455 });
+      g.circle(0, 1.5, 1.4).fill({ color: 0xfff3cf });
+    } else if (kind === 'roll') {
+      g.circle(0, 2, 5).stroke({ width: 1.6, color: 0xcfd8ea });
+      g.poly([-6, -2, -1, -6, 2, -3]).fill({ color: 0xdfe6f2 });
+      g.rect(-7, 5, 12, 1.4).fill({ color: 0x8a6a44 });
+    } else {
+      // flask
+      g.rect(-2, -8, 4, 3).fill({ color: 0x9a8f84 });
+      g.poly([-2, -5, 2, -5, 5, 5, -5, 5]).fill({ color: 0x6fd3d8, alpha: 0.9 });
+      g.poly([-5, 5, 5, 5, 4, 2, -4, 2]).fill({ color: 0x9fe8f0 });
+      g.rect(-3, 0, 6, 3).fill({ color: 0xdff8fa, alpha: 0.8 });
+    }
+    return g;
+  }
+
   updatePrompts() {
     const w = this.world;
     const p = w.player;
-    if (p.level === 1 && w.elapsed < 9000) {
-      this.promptTxt.text = `${input.prompt('up', 'MOVE')}   ${input.prompt('attack', 'ATTACK')}   ${input.prompt('cast', 'EMBER')}   ${input.prompt('dash', 'ROLL')}`;
-    } else if (w.elapsed < 26000 && w.player.potions > 0) {
-      this.promptTxt.text = `${input.prompt('interact', 'OPEN CHEST')}   ${input.prompt('cast', 'EMBER')} COSTS AETHER`;
-    } else {
-      this.promptTxt.text = '';
-    }
+    const near = w.pickups?.some((k) => k.kind === 'chest' && Math.hypot(k.x - p.x, k.y - p.y) < 22);
+    if (near) this.promptTxt.text = input.prompt('interact', 'OPEN CHEST');
+    else if (p.hp < p.maxHp * 0.35 && p.potions > 0) this.promptTxt.text = input.prompt('interact', 'DRINK FLASK');
+    else if (p.mp < 8) this.promptTxt.text = 'AETHER SPENT';
+    else this.promptTxt.text = '';
   }
 
   syncFromWorld(instant = false) {

@@ -379,6 +379,26 @@ export function sparkTexture(bright = false) {
   });
 }
 
+/** Blood splat: irregular specks, readable at 16px and tileable on floors. */
+export function bloodTexture() {
+  return canvasTexture(24, 24, (ctx) => {
+    const specks = [
+      [10, 11, 7, 6], [16, 8, 4, 4], [7, 15, 4, 4],
+      [14, 16, 3, 3], [5, 8, 2, 2], [18, 14, 2, 2], [11, 19, 3, 2],
+    ];
+    for (const [x, y, w, h] of specks) {
+      ctx.fillStyle = 'rgba(140,30,44,0.92)';
+      ctx.beginPath();
+      ctx.ellipse(x, y, w / 2, h / 2, 0.4, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.fillStyle = 'rgba(196,58,70,0.55)';
+    ctx.beginPath();
+    ctx.ellipse(11, 12, 2, 1.4, 0.4, 0, Math.PI * 2);
+    ctx.fill();
+  });
+}
+
 export function smokeTexture() {
   return canvasTexture(16, 16, (ctx) => {
     ctx.fillStyle = 'rgba(190,180,200,0.30)';

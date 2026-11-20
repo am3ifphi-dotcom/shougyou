@@ -104,8 +104,9 @@ export class Banner extends Container {
   constructor() {
     super();
     this.visible = false;
+    // sits clear of the vitals block and the objective line above it
     this.x = VIEW_W / 2;
-    this.y = 54;
+    this.y = 74;
     this.band = new Graphics();
     this.addChild(this.band);
     this.title = text('', { size: 20, font: 'title', fill: COLORS.gold, anchor: 0.5, letterSpacing: 3, stroke: 0x0b0810, strokeWidth: 3 });
@@ -124,7 +125,7 @@ export class Banner extends Container {
     this.duration = ms;
     this.band.clear();
     const w = Math.max(180, title.width + 80);
-    this.band.rect(-w / 2, -18, w, 44).fill({ color: 0x05040a, alpha: 0.55 });
+    this.band.rect(-w / 2, -18, w, 44).fill({ color: 0x05040a, alpha: 0.62 });
     this.band.rect(-w / 2, -18, w, 1).fill({ color: 0xe8b650, alpha: 0.6 });
     this.band.rect(-w / 2, 25, w, 1).fill({ color: 0xe8b650, alpha: 0.6 });
   }

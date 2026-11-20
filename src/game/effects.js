@@ -42,7 +42,8 @@ export class Particles extends Container {
       s.rotation = Math.random() * Math.PI * 2;
       s.tint = tint;
       s.alpha = 1;
-      s.scale.set(scale * (0.6 + Math.random() * 0.8));
+      // fxLayer lives inside the 2x world root, so particle scales are halved
+      s.scale.set(scale * (0.3 + Math.random() * 0.4));
       s.fade = fade;
       s.visible = true;
       this.addChild(s);

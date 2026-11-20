@@ -1088,8 +1088,8 @@
       "id": "item_soul",
       "type": "sprite",
       "role": "pickup",
-      "url": "https://api.github.com/repos/tommyettinger/DawnLikeAtlas/contents/renamed/sparkly%20potion.png",
-      "raw_url": "https://api.github.com/repos/tommyettinger/DawnLikeAtlas/contents/renamed/sparkly%20potion.png",
+      "url": "https://api.github.com/repos/tommyettinger/DawnLikeAtlas/contents/renamed/gleaming%20violet%20gem.png",
+      "raw_url": "https://api.github.com/repos/tommyettinger/DawnLikeAtlas/contents/renamed/gleaming%20violet%20gem.png",
       "local_path": "assets/sprites/soul_shard.png",
       "author": "DragonDePlatino & DawnBringer",
       "source_page": "https://opengameart.org/content/dawnlike-16x16-universal-rogue-like-tileset-v181",
@@ -1098,7 +1098,8 @@
       "noncommercial_only": false,
       "modified": false,
       "redistribute_allowed": true,
-      "notes": "Soul shard experience pickup."
+      "notes": "Generated procedurally (procedural.soulTexture). DawnLike's 'gem' entries in renamed/ are sparkle overlays rather than gem props, so this id is drawn in code.",
+      "generated": true
     },
     {
       "id": "fx_sparks_a",
@@ -1114,7 +1115,8 @@
       "noncommercial_only": false,
       "modified": false,
       "redistribute_allowed": true,
-      "notes": "Spark particle sprite."
+      "notes": "Generated procedurally (procedural.sparkTexture): the sheet frames read as props, not particles.",
+      "generated": true
     },
     {
       "id": "fx_sparks_b",
@@ -1130,7 +1132,8 @@
       "noncommercial_only": false,
       "modified": false,
       "redistribute_allowed": true,
-      "notes": "Dense spark particle sprite."
+      "notes": "Generated procedurally (procedural.sparkTexture bright).",
+      "generated": true
     },
     {
       "id": "fx_burst",
@@ -1146,13 +1149,14 @@
       "noncommercial_only": false,
       "modified": true,
       "redistribute_allowed": true,
-      "notes": "Explosion core. The published sheet is a packed multi-frame strip at a low bit depth, so the fetcher extracts frame 0 into a clean 16x16 RGBA tile.",
+      "notes": "Generated procedurally (procedural.burstTexture).",
       "post": {
         "op": "crop_frame",
         "w": 16,
         "h": 16,
         "index": 0
-      }
+      },
+      "generated": true
     },
     {
       "id": "fx_smoke",
@@ -1168,13 +1172,14 @@
       "noncommercial_only": false,
       "modified": true,
       "redistribute_allowed": true,
-      "notes": "Smoke puff for dust and death. The published sheet is a packed multi-frame strip at a low bit depth, so the fetcher extracts frame 0 into a clean 16x16 RGBA tile.",
+      "notes": "Generated procedurally (procedural.smokeTexture).",
       "post": {
         "op": "crop_frame",
         "w": 16,
         "h": 16,
         "index": 0
-      }
+      },
+      "generated": true
     },
     {
       "id": "fx_fog",
@@ -1206,7 +1211,8 @@
       "noncommercial_only": false,
       "modified": false,
       "redistribute_allowed": true,
-      "notes": "Blood decal stamped on hit."
+      "notes": "Generated procedurally (procedural.bloodTexture): the tile sheet has no gore sprites, only a bloody scroll prop.",
+      "generated": true
     },
     {
       "id": "logo_title",

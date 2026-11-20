@@ -16,6 +16,7 @@ const BASE = './';
 
 export const State = {
   READY: 'ready',
+  GENERATED: 'generated',
   CACHED: 'cached',
   USER: 'user',
   FALLBACK: 'fallback',
@@ -109,7 +110,7 @@ export function allRecords() {
 export function statusCounts() {
   const c = { ready: 0, fallback: 0, missing: 0 };
   for (const r of Object.values(records)) {
-    if (r.status === State.READY || r.status === State.CACHED || r.status === State.USER) c.ready++;
+    if (r.status === State.READY || r.status === State.CACHED || r.status === State.USER || r.status === State.GENERATED) c.ready++;
     else if (r.status === State.FALLBACK) c.fallback++;
     else c.missing++;
   }

@@ -366,6 +366,13 @@ def process(entry: dict, args, counts: dict) -> dict:
         log(f"[excl ] {aid:22s} removed (non-commercial licence, COMMERCIAL_BUILD)")
         return rec
 
+    if entry.get("generated"):
+        # drawn at runtime by src/core/procedural.js; nothing to download
+        rec.update(status="generated", bytes=0)
+        counts["generated"] += 1
+        log(f"[gen  ] {aid:22s} procedural (no download)")
+        return rec
+
     local = ROOT / entry["local_path"]
     override = USER_DIR / Path(entry["local_path"]).name
     if override.exists() and not args.force:
@@ -449,7 +456,7 @@ def main() -> int:
         return 0
 
     records = []
-    counts = {"ok": 0, "cached": 0, "user": 0, "fallback": 0, "excluded": 0}
+    counts = {"ok": 0, "cached": 0, "user": 0, "fallback": 0, "excluded": 0, "generated": 0}
 
     for entry in manifest["assets"]:
         typ = entry.get("type", "image")
@@ -498,7 +505,12 @@ def main() -> int:
 def write_user_index() -> None:
     """Publish the list of hand-placed overrides so the game never probes 404s."""
     USER_DIR.mkdir(parents=True, exist_ok=True)
-    files = sorted(p.name for p in USER_DIR.iterdir() if p.is_file() and not p.name.startswith('.'))
+    ignored = {"index.json", "README.md"}
+    files = sorted(
+        p.name
+        for p in USER_DIR.iterdir()
+        if p.is_file() and not p.name.startswith(".") and p.name not in ignored
+    )
     (USER_DIR / "index.json").write_text(json.dumps({"files": files}, indent=2) + "\n", encoding="utf-8")
     if files:
         log(f"[user ] index.json lists {len(files)} override(s)")

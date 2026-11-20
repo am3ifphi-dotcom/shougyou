@@ -1,0 +1,17 @@
+{
+  "name": "shattered-crown",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "SHATTERED CROWN - a dark-fantasy pixel action RPG. Personal, non-commercial project.",
+  "scripts": {
+    "start": "node tools/serve.mjs",
+    "dev": "node tools/serve.mjs",
+    "fetch-assets": "python3 tools/fetch_assets.py",
+    "assets:report": "python3 tools/fetch_assets.py --report",
+    "licenses": "python3 tools/fetch_assets.py --report"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

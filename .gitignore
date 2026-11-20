@@ -1,0 +1,12 @@
+# Dependencies / build output
+node_modules/
+dist/
+build/
+out/
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Generated at fetch time; safe to regenerate with `npm run fetch-assets`
+assets/fetch.log

@@ -1,0 +1,12 @@
+{
+  "name": "honshitsu-essence-leak",
+  "version": "1.0.3",
+  "private": true,
+  "type": "module",
+  "description": "HONSHITSU — 本質漏出 / dark fantasy pixel arcade score-attack (non-commercial)",
+  "scripts": {
+    "fetch-assets": "python3 tools/fetch_assets.py",
+    "licenses": "python3 tools/gen_licenses.py",
+    "serve": "python3 -m http.server 8000"
+  }
+}

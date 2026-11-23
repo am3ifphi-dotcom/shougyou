@@ -1,0 +1,14 @@
+# dependencies (fetched by `npm install`, never committed)
+node_modules/
+
+# tool scratch space: blobless clones, ffmpeg intermediates, decoded strips
+.cache/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+
+# player drop-in asset overrides are personal; keep the folder, not the files
+assets/user/*
+!assets/user/.gitkeep

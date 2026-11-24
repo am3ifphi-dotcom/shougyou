@@ -1,0 +1,20 @@
+{
+  "name": "honshitsu-archive",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Personal/noncommercial dark-fantasy dot-art score-attack game built from the 本質images novel and character motifs.",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "dev": "node scripts/serve.mjs",
+    "verify": "node scripts/verify-assets.mjs",
+    "prefetch": "node scripts/prefetch-assets.mjs",
+    "prefetch:commercial": "COMMERCIAL_BUILD=true node scripts/prefetch-assets.mjs",
+    "licenses": "node scripts/generate-licenses.mjs",
+    "commercial": "node scripts/build-commercial.mjs",
+    "manifest": "python3 scripts/generate-manifest.py",
+    "portraits": "python3 scripts/make_pixel_portraits.py",
+    "three-bundle": "python3 scripts/build-three-bundle.py"
+  },
+  "engines": { "node": ">=18" }
+}

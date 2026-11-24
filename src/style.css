@@ -1,0 +1,33 @@
+/* One fixed 16:9 stage.  Black letterbox is the page background. */
+:root { --scale: 1; }
+* { box-sizing: border-box; }
+html, body {
+  width: 100%; height: 100%; margin: 0; padding: 0;
+  overflow: hidden; background: #000; color: #f4e8d0;
+  user-select: none; -webkit-user-select: none; -ms-user-select: none;
+  touch-action: none; cursor: none; overscroll-behavior: none;
+}
+body { position: fixed; inset: 0; }
+#stage {
+  position: absolute; left: 50%; top: 50%;
+  width: 960px; height: 540px;
+  transform: translate(-50%, -50%) scale(var(--scale));
+  transform-origin: center center;
+  background: #09070e;
+  overflow: hidden;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  box-shadow: 0 0 0 100vmax #000, 0 0 80px #000 inset;
+}
+#stage canvas {
+  position: absolute; inset: 0;
+  width: 960px; height: 540px;
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  outline: none; border: 0;
+}
+#gl { z-index: 0; }
+#screen { z-index: 1; }
+::selection { background: transparent; }
+::-webkit-scrollbar { display: none; }

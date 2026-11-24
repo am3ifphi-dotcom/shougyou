@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.cache/
+__pycache__/
+*.pyc
+*.log
+.DS_Store
+
+# User-provided source material and local overrides are not redistributed.
+google_drive/
+assets/source/drive/*
+!assets/source/drive/README.md
+assets/user/*
+!assets/user/README.md
+!assets/user/index.json
+!assets/user/.gitkeep

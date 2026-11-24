@@ -1,0 +1,83 @@
+{
+  "states": [
+    {
+      "name": "loading.png",
+      "state": "LOADING"
+    },
+    {
+      "name": "title.png",
+      "state": "TITLE"
+    },
+    {
+      "name": "menu.png",
+      "state": "MENU"
+    },
+    {
+      "name": "gameplay.png",
+      "state": "GAME"
+    },
+    {
+      "name": "pause.png",
+      "state": "PAUSE"
+    },
+    {
+      "name": "result.png",
+      "state": "RESULT"
+    },
+    {
+      "name": "options.png",
+      "state": "OPTIONS"
+    },
+    {
+      "name": "credits.png",
+      "state": "CREDITS"
+    },
+    {
+      "name": "partial-failure-loading.png",
+      "state": "LOADING"
+    },
+    {
+      "name": "partial-failure-menu.png",
+      "state": "MENU"
+    },
+    {
+      "name": "commercial-game.png",
+      "state": "GAME"
+    }
+  ],
+  "errors": [],
+  "checks": {
+    "mainLog": {
+      "total": 119,
+      "fallback": 0,
+      "progress": 1,
+      "commercial": false,
+      "fonts": {
+        "press": true,
+        "dot": true
+      },
+      "three": true,
+      "audioDb": -20.56262239063156
+    },
+    "failure": {
+      "state": "MENU",
+      "fallbacks": [
+        "ui-panel-dark",
+        "model-pillar-obelisk",
+        "bgm_title",
+        "font-press-start",
+        "portrait-mie",
+        "model-pillar-obelisk"
+      ],
+      "gameplayCanStart": true
+    },
+    "commercial": {
+      "commercial": true,
+      "portraitStatus": "excluded",
+      "portraitImageIsFallback": true,
+      "fallbackDrawable": true,
+      "manifestEntries": 86
+    }
+  },
+  "consoleErrors": []
+}

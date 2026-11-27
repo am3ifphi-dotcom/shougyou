@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>桜色の約束 ―君と過ごす、最後の春―</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="viewport">
+  <div id="stage">
+    <div id="shakeWrap">
+      <!-- 背景 -->
+      <div id="bgLayer"><img id="bgA" alt=""><img id="bgB" alt=""></div>
+      <div id="bgGrade"></div>
+      <div id="vignette"></div>
+      <!-- キャラ -->
+      <div id="charLayer"></div>
+      <!-- 演出エフェクト（花びら・雨） -->
+      <canvas id="fxCanvas" width="1280" height="720"></canvas>
+      <div id="flash"></div>
+      <!-- CG -->
+      <div id="cgLayer">
+        <img id="cgImg" alt="">
+        <div class="cgBar top"></div>
+        <div class="cgBar bottom"></div>
+        <div id="cgBadge">CG</div>
+        <div id="cgCaption"></div>
+      </div>
+      <!-- テキストボックス -->
+      <div id="textBox">
+        <div id="namePlate"><span id="nameText"></span></div>
+        <div id="textBody"><span id="textSpan"></span><span id="nextIndicator">▼</span></div>
+      </div>
+      <!-- システムバー -->
+      <div id="sysBar">
+        <button class="sysBtn" id="btnSave">セーブ</button>
+        <button class="sysBtn" id="btnLoad">ロード</button>
+        <button class="sysBtn" id="btnAuto">オート</button>
+        <button class="sysBtn" id="btnSkip">スキップ</button>
+        <button class="sysBtn" id="btnBacklog">バックログ</button>
+        <button class="sysBtn" id="btnConfig">設定</button>
+        <button class="sysBtn" id="btnTitle">タイトル</button>
+        <button class="sysBtn" id="btnFull">全画面</button>
+      </div>
+      <!-- 選択肢 -->
+      <div id="choiceLayer"></div>
+      <!-- 章タイトル -->
+      <div id="chapterCard"><div id="chapterTitle"></div><div id="chapterSub"></div></div>
+      <!-- タイトル画面 -->
+      <div id="titleScreen">
+        <img id="titleBg" alt="">
+        <div id="titleShade"></div>
+        <div id="titleLogo">
+          <div id="logoEn">Sakura-iro no Yakusoku</div>
+          <div id="logoMain">桜色の約束</div>
+          <div id="logoSub">―君と過ごす、最後の春―</div>
+          <div id="clearBadge"></div>
+        </div>
+        <nav id="titleMenu">
+          <button class="titleBtn" id="menuNew">はじめから</button>
+          <button class="titleBtn" id="menuContinue">つづきから</button>
+          <button class="titleBtn" id="menuLoad">ロード</button>
+          <button class="titleBtn" id="menuConfig">設定</button>
+          <button class="titleBtn" id="menuGallery">ギャラリー</button>
+        </nav>
+        <div id="titleFooter">© 2026 Sakura Project　／　Ver 1.0　／　音声はWebAudioで生成しています</div>
+      </div>
+      <!-- モーダル -->
+      <div id="modalLayer"></div>
+      <!-- エンディング -->
+      <div id="endingScreen">
+        <div id="staffWrap"><div id="staffInner"></div></div>
+        <button id="btnToTitle">タイトルへ戻る</button>
+      </div>
+      <div id="fadeBlack"></div>
+      <div id="toast"></div>
+    </div>
+  </div>
+</div>
+<script src="js/audio.js"></script>
+<script src="js/scenario.js"></script>
+<script src="js/engine.js"></script>
+</body>
+</html>

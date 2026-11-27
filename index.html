@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>終電のホームで、君に会った 〜桜色の約束〜</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ===== BOOT ===== -->
+  <div id="boot" class="screen">
+    <div class="boot-inner">
+      <div class="boot-mark">🌸</div>
+      <div class="boot-title">SAKURA WORKS</div>
+      <div class="boot-sub">終電のホームで、君に会った</div>
+      <div class="boot-bar"><div id="boot-fill"></div></div>
+      <div id="boot-msg">Now Loading...</div>
+      <div class="boot-copy">© 2026 SAKURA WORKS</div>
+    </div>
+  </div>
+
+  <!-- ===== TITLE ===== -->
+  <div id="title" class="screen hidden">
+    <img class="title-bg" src="assets/bg_station_night.png" alt="">
+    <div class="title-shade"></div>
+    <div class="title-logo">
+      <div class="title-logo-sub">〜 桜色の約束 〜</div>
+      <h1>終電のホームで、<br>君に会った</h1>
+      <div class="title-logo-en">THE LAST TRAIN PLATFORM</div>
+    </div>
+    <nav class="title-menu">
+      <button class="tbtn" data-act="new">はじめから</button>
+      <button class="tbtn" data-act="continue">つづきから</button>
+      <button class="tbtn" data-act="load">ロード</button>
+      <button class="tbtn" data-act="config">コンフィグ</button>
+      <button class="tbtn" data-act="gallery">ギャラリー</button>
+    </nav>
+    <div class="title-press">PRESS ENTER</div>
+    <div class="title-footer">
+      <span>© 2026 SAKURA WORKS</span>
+      <span>Ver 1.00 / 16:9 FULLSCREEN</span>
+    </div>
+  </div>
+
+  <!-- ===== GAME ===== -->
+  <div id="game" class="screen hidden">
+    <div id="stage">
+      <img id="bg" alt="">
+      <div id="chars"></div>
+      <canvas id="particles"></canvas>
+      <div id="vignette"></div>
+      <div class="frame-line"></div>
+      <div id="lb-top" class="letterbox"></div>
+      <div id="lb-bottom" class="letterbox"></div>
+      <div id="flash"></div>
+      <div id="fade"></div>
+
+      <div id="chapter-card"><div id="chapter-text"></div></div>
+
+      <div id="letter-view" class="hidden">
+        <div class="letter-paper">
+          <div class="letter-head">悠真へ</div>
+          <div id="letter-body"></div>
+          <div class="letter-foot">澪</div>
+        </div>
+        <div class="letter-hint">クリックで閉じる</div>
+      </div>
+
+      <div id="dialogue">
+        <div id="name-plate"></div>
+        <div id="text"></div>
+        <div id="next-ind"></div>
+      </div>
+
+      <div id="choices" class="hidden"></div>
+
+      <div id="hud">
+        <div id="chapter-label"></div>
+        <div class="hud-btns">
+          <button class="hbtn" id="btn-save">SAVE</button>
+          <button class="hbtn" id="btn-load">LOAD</button>
+          <button class="hbtn" id="btn-auto">AUTO</button>
+          <button class="hbtn" id="btn-skip">SKIP</button>
+          <button class="hbtn" id="btn-backlog">LOG</button>
+          <button class="hbtn" id="btn-config">CONFIG</button>
+          <button class="hbtn" id="btn-menu">MENU</button>
+        </div>
+      </div>
+
+      <div id="backlog-panel" class="panel hidden">
+        <div class="panel-box">
+          <div class="panel-title">バックログ</div>
+          <div id="backlog-list"></div>
+          <button class="pbtn close-panel">閉じる</button>
+        </div>
+      </div>
+
+      <div id="save-panel" class="panel hidden">
+        <div class="panel-box">
+          <div class="panel-title">セーブ</div>
+          <div id="save-slots" class="slots"></div>
+          <button class="pbtn close-panel">閉じる</button>
+        </div>
+      </div>
+
+      <div id="load-panel" class="panel hidden">
+        <div class="panel-box">
+          <div class="panel-title">ロード</div>
+          <div id="load-slots" class="slots"></div>
+          <button class="pbtn close-panel">閉じる</button>
+        </div>
+      </div>
+
+      <div id="config-panel" class="panel hidden">
+        <div class="panel-box">
+          <div class="panel-title">コンフィグ</div>
+          <div class="cfg-row"><label>文字表示速度</label><input type="range" id="cfg-textspeed" min="1" max="10" value="5"></div>
+          <div class="cfg-row"><label>オート速度</label><input type="range" id="cfg-autospeed" min="1" max="10" value="5"></div>
+          <div class="cfg-row"><label>BGM 音量</label><input type="range" id="cfg-bgm" min="0" max="100" value="70"></div>
+          <div class="cfg-row"><label>SE 音量</label><input type="range" id="cfg-se" min="0" max="100" value="80"></div>
+          <div class="cfg-row"><label>文字サイズ</label><input type="range" id="cfg-textsize" min="80" max="140" value="100"></div>
+          <div class="cfg-row"><label>ウィンドウ透明度</label><input type="range" id="cfg-opacity" min="40" max="100" value="88"></div>
+          <div class="cfg-row"><label>パーティクル</label><select id="cfg-particles"><option value="on">ON</option><option value="off">OFF</option></select></div>
+          <div class="cfg-row"><label>画面の揺れ</label><select id="cfg-shake"><option value="on">ON</option><option value="off">OFF</option></select></div>
+          <button class="pbtn close-panel">閉じる</button>
+        </div>
+      </div>
+
+      <div id="gallery-panel" class="panel hidden">
+        <div class="panel-box wide">
+          <div class="panel-title">ギャラリー ― CG</div>
+          <div id="gallery-grid"></div>
+          <button class="pbtn close-panel">閉じる</button>
+        </div>
+      </div>
+
+      <div id="menu-panel" class="panel hidden">
+        <div class="panel-box">
+          <div class="panel-title">メニュー</div>
+          <button class="pbtn menu-act" data-act="save">セーブ</button>
+          <button class="pbtn menu-act" data-act="load">ロード</button>
+          <button class="pbtn menu-act" data-act="config">コンフィグ</button>
+          <button class="pbtn menu-act" data-act="gallery">ギャラリー</button>
+          <button class="pbtn menu-act" data-act="title">タイトルへ戻る</button>
+          <button class="pbtn close-panel">閉じる</button>
+        </div>
+      </div>
+
+      <div id="ending-card" class="hidden">
+        <div class="ending-inner">
+          <div id="ending-type"></div>
+          <div id="ending-name"></div>
+          <div class="ending-hint">クリックでタイトルへ</div>
+        </div>
+      </div>
+
+      <div id="toast"></div>
+    </div>
+  </div>
+</div>
+
+<script src="js/audio.js"></script>
+<script src="js/script.js"></script>
+<script src="js/engine.js"></script>
+</body>
+</html>

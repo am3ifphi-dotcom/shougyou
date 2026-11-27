@@ -1,0 +1,16 @@
+Live2D sample model notice
+==========================
+
+The bundled "Shizuku" Cubism 2.1 sample model comes from the
+guansss/pixi-live2d-display test assets (v0.4.0).  The model artwork is
+© Live2D Inc. and is distributed under Live2D's Free Material License.
+It is used here only as the in-fiction archive avatar <SHIZUKU>.
+
+Runtime / integration:
+- live2d.min.js — Cubism 2.1 WebGL runtime mirror from dylanNew/live2d.
+- pixi-live2d-display — MIT (see PIXI-LIVE2D-DISPLAY-MIT-LICENSE.txt).
+- PixiJS — MIT.
+
+This prototype is not affiliated with or endorsed by Live2D Inc.
+Before any commercial distribution, replace this sample model with
+properly licensed production artwork and review Live2D's SDK terms.

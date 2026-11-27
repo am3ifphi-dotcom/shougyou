@@ -1,0 +1,17 @@
+Character sprite source notice
+==============================
+
+The transparent full-body character sprites in public/assets/chars were
+selected from the user's own Google Drive material folder associated with
+"「偏差値60の教室から✝本質✝が漏れ出している件について」".
+
+Processing performed for this game:
+- selected expressional variants for nine on-screen characters,
+- computed one shared alpha bounding box per character across all expressions,
+- cropped every expression to that exact box so head/feet never jump,
+- resized with Lanczos to a common 1280 px reference height,
+- exported alpha WebP plus a soft rim-light silhouette,
+- generated public/assets/chars/manifest.json with aliases and dimensions.
+
+Raw source PNGs are kept outside Git (google_drive/) and are not redistributed
+as part of the build.  Rights to the original artwork remain with the owner.

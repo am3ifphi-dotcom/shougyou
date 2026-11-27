@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="theme-color" content="#05070d" />
+    <title>八分二十秒の、おかえり</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='27' fill='%23070b18'/%3E%3Ccircle cx='32' cy='32' r='13' fill='%23ffd89b' opacity='.9'/%3E%3Cpath d='M32 3v10M32 51v10M3 32h10M51 32h10' stroke='%239bd8ff' stroke-width='2'/%3E%3C/svg%3E" />
+    <script src="/vendor/live2d.min.js"></script>
+  </head>
+  <body>
+    <main id="game" data-screen="title">
+      <section id="stage" data-bg="observatory_dusk" data-ambient="dusk" aria-label="ゲーム画面">
+        <div id="bg-a" class="bg-layer"></div>
+        <div id="bg-b" class="bg-layer"></div>
+        <canvas id="particles"></canvas>
+        <div id="ambient-overlay"></div>
+
+        <div id="live2d-host" class="live2d-host">
+          <div class="live2d-frame">
+            <span class="live2d-label">ARCHIVE / SHIZUKU</span>
+            <span class="live2d-status">LIVE2D · CUBISM 2.1</span>
+            <span class="live2d-corner tl"></span><span class="live2d-corner tr"></span>
+            <span class="live2d-corner bl"></span><span class="live2d-corner br"></span>
+          </div>
+          <div id="live2d-fallback" class="live2d-fallback">
+            <div class="fallback-orbit"></div>
+            <span>ARCHIVE OFFLINE</span>
+          </div>
+        </div>
+
+        <div id="char-layer"></div>
+        <div id="fx-layer"></div>
+        <div id="cinema-bars"></div>
+        <div id="vignette"></div>
+        <div id="grain"></div>
+      </section>
+
+      <div id="hud" aria-hidden="true">
+        <div class="hud-chapter"><span>KIRIHA ARCHIVE</span><strong id="chapter-tag-text">序章</strong></div>
+        <div class="hud-right">
+          <span class="hud-mode" id="mode-indicator">MANUAL</span>
+          <span class="hud-clock">08:20</span>
+        </div>
+      </div>
+
+      <div id="title-screen"></div>
+
+      <div id="dialogue" class="hidden">
+        <div class="dialogue-frame">
+          <div id="nameplate" class="nameplate">
+            <span class="nameplate-mark" aria-hidden="true"></span>
+            <span id="speaker-name"></span>
+            <span id="voice-badge" class="voice-badge">VOICE</span>
+          </div>
+          <div id="dialogue-text" class="dialogue-text"></div>
+          <div id="next-indicator" class="next-indicator">▼</div>
+        </div>
+      </div>
+
+      <div id="choice-layer" class="hidden"></div>
+
+      <nav id="quick-menu" class="quick-menu hidden" aria-label="クイックメニュー">
+        <button data-quick-action="auto" title="オート (A)">AUTO</button>
+        <button data-quick-action="skip" title="スキップ (S)">SKIP</button>
+        <button data-quick-action="save" title="セーブ">SAVE</button>
+        <button data-quick-action="load" title="ロード">LOAD</button>
+        <button data-quick-action="backlog" title="バックログ (B)">LOG</button>
+        <button data-quick-action="gallery" title="ギャラリー">CG</button>
+        <button data-quick-action="music" title="ミュージック">BGM</button>
+        <button data-quick-action="settings" title="設定">OPT</button>
+        <button data-quick-action="menu" title="システムメニュー (ESC)">MENU</button>
+        <button data-quick-action="hide" title="テキスト非表示 (CTRL)">HIDE</button>
+      </nav>
+
+      <div id="overlay-root"></div>
+      <div id="toast" class="hidden"></div>
+      <div id="chapter-overlay" class="chapter-overlay hidden"></div>
+      <div id="cg-overlay" class="cg-overlay hidden"></div>
+      <div id="ending-overlay" class="ending-overlay hidden"></div>
+      <div id="hidden-hint" class="hidden-hint hidden">CTRL / H でテキスト再表示</div>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,474 @@
+{
+  "futami": {
+    "default": "normal",
+    "rim": "futami/rim.webp",
+    "expressions": {
+      "01_tsuujou": {
+        "src": "futami/01_tsuujou.webp",
+        "width": 296,
+        "height": 1280
+      },
+      "03_shinpai": {
+        "src": "futami/03_shinpai.webp",
+        "width": 296,
+        "height": 1280
+      },
+      "04_itazura": {
+        "src": "futami/04_itazura.webp",
+        "width": 296,
+        "height": 1280
+      },
+      "05_yokogao": {
+        "src": "futami/05_yokogao.webp",
+        "width": 296,
+        "height": 1280
+      }
+    },
+    "aliases": {
+      "normal": {
+        "src": "futami/01_tsuujou.webp",
+        "width": 296,
+        "height": 1280
+      },
+      "worried": {
+        "src": "futami/03_shinpai.webp",
+        "width": 296,
+        "height": 1280
+      },
+      "gentle": {
+        "src": "futami/03_shinpai.webp",
+        "width": 296,
+        "height": 1280
+      },
+      "playful": {
+        "src": "futami/04_itazura.webp",
+        "width": 296,
+        "height": 1280
+      },
+      "profile": {
+        "src": "futami/05_yokogao.webp",
+        "width": 296,
+        "height": 1280
+      }
+    }
+  },
+  "inaba": {
+    "default": "normal",
+    "rim": "inaba/rim.webp",
+    "expressions": {
+      "01_furushashin_hohoemi": {
+        "src": "inaba/01_furushashin_hohoemi.webp",
+        "width": 402,
+        "height": 1280
+      }
+    },
+    "aliases": {
+      "normal": {
+        "src": "inaba/01_furushashin_hohoemi.webp",
+        "width": 402,
+        "height": 1280
+      }
+    }
+  },
+  "katsuya": {
+    "default": "normal",
+    "rim": "katsuya/rim.webp",
+    "expressions": {
+      "01_tsuujou": {
+        "src": "katsuya/01_tsuujou.webp",
+        "width": 465,
+        "height": 1280
+      },
+      "02_hohoemi": {
+        "src": "katsuya/02_hohoemi.webp",
+        "width": 465,
+        "height": 1280
+      },
+      "03_tooi_me": {
+        "src": "katsuya/03_tooi_me.webp",
+        "width": 465,
+        "height": 1280
+      },
+      "04_odoroki": {
+        "src": "katsuya/04_odoroki.webp",
+        "width": 465,
+        "height": 1280
+      },
+      "06_katai_muhyoujou": {
+        "src": "katsuya/06_katai_muhyoujou.webp",
+        "width": 465,
+        "height": 1280
+      },
+      "07_kaisou_me_hosomeru": {
+        "src": "katsuya/07_kaisou_me_hosomeru.webp",
+        "width": 465,
+        "height": 1280
+      },
+      "08_namida_koraeru": {
+        "src": "katsuya/08_namida_koraeru.webp",
+        "width": 465,
+        "height": 1280
+      },
+      "09_naku": {
+        "src": "katsuya/09_naku.webp",
+        "width": 465,
+        "height": 1280
+      },
+      "10_hareyaka_emi": {
+        "src": "katsuya/10_hareyaka_emi.webp",
+        "width": 465,
+        "height": 1280
+      }
+    },
+    "aliases": {
+      "normal": {
+        "src": "katsuya/01_tsuujou.webp",
+        "width": 465,
+        "height": 1280
+      },
+      "smile": {
+        "src": "katsuya/02_hohoemi.webp",
+        "width": 465,
+        "height": 1280
+      },
+      "distant": {
+        "src": "katsuya/03_tooi_me.webp",
+        "width": 465,
+        "height": 1280
+      },
+      "surprise": {
+        "src": "katsuya/04_odoroki.webp",
+        "width": 465,
+        "height": 1280
+      },
+      "stiff": {
+        "src": "katsuya/06_katai_muhyoujou.webp",
+        "width": 465,
+        "height": 1280
+      },
+      "memory": {
+        "src": "katsuya/07_kaisou_me_hosomeru.webp",
+        "width": 465,
+        "height": 1280
+      },
+      "holdTears": {
+        "src": "katsuya/08_namida_koraeru.webp",
+        "width": 465,
+        "height": 1280
+      },
+      "cry": {
+        "src": "katsuya/09_naku.webp",
+        "width": 465,
+        "height": 1280
+      },
+      "bright": {
+        "src": "katsuya/10_hareyaka_emi.webp",
+        "width": 465,
+        "height": 1280
+      }
+    }
+  },
+  "akari": {
+    "default": "normal",
+    "rim": "akari/rim.webp",
+    "expressions": {
+      "01_tsuujou": {
+        "src": "akari/01_tsuujou.webp",
+        "width": 464,
+        "height": 1280
+      },
+      "02_tsukkomi": {
+        "src": "akari/02_tsukkomi.webp",
+        "width": 464,
+        "height": 1280
+      },
+      "03_egao": {
+        "src": "akari/03_egao.webp",
+        "width": 464,
+        "height": 1280
+      },
+      "06_ha": {
+        "src": "akari/06_ha.webp",
+        "width": 464,
+        "height": 1280
+      }
+    },
+    "aliases": {
+      "normal": {
+        "src": "akari/01_tsuujou.webp",
+        "width": 464,
+        "height": 1280
+      },
+      "tsukkomi": {
+        "src": "akari/02_tsukkomi.webp",
+        "width": 464,
+        "height": 1280
+      },
+      "smile": {
+        "src": "akari/03_egao.webp",
+        "width": 464,
+        "height": 1280
+      },
+      "playful": {
+        "src": "akari/03_egao.webp",
+        "width": 464,
+        "height": 1280
+      },
+      "flushed": {
+        "src": "akari/06_ha.webp",
+        "width": 464,
+        "height": 1280
+      }
+    }
+  },
+  "naitou": {
+    "default": "normal",
+    "rim": "naitou/rim.webp",
+    "expressions": {
+      "01_tsuujou": {
+        "src": "naitou/01_tsuujou.webp",
+        "width": 458,
+        "height": 1280
+      },
+      "02_hohoemi": {
+        "src": "naitou/02_hohoemi.webp",
+        "width": 458,
+        "height": 1280
+      },
+      "04_odoroki": {
+        "src": "naitou/04_odoroki.webp",
+        "width": 458,
+        "height": 1280
+      },
+      "05_yasashii_me": {
+        "src": "naitou/05_yasashii_me.webp",
+        "width": 458,
+        "height": 1280
+      },
+      "06_sukoshi_warau": {
+        "src": "naitou/06_sukoshi_warau.webp",
+        "width": 458,
+        "height": 1280
+      }
+    },
+    "aliases": {
+      "normal": {
+        "src": "naitou/01_tsuujou.webp",
+        "width": 458,
+        "height": 1280
+      },
+      "smile": {
+        "src": "naitou/02_hohoemi.webp",
+        "width": 458,
+        "height": 1280
+      },
+      "surprise": {
+        "src": "naitou/04_odoroki.webp",
+        "width": 458,
+        "height": 1280
+      },
+      "gentle": {
+        "src": "naitou/05_yasashii_me.webp",
+        "width": 458,
+        "height": 1280
+      },
+      "softSmile": {
+        "src": "naitou/06_sukoshi_warau.webp",
+        "width": 458,
+        "height": 1280
+      }
+    }
+  },
+  "rei": {
+    "default": "normal",
+    "rim": "rei/rim.webp",
+    "expressions": {
+      "01_suzushii": {
+        "src": "rei/01_suzushii.webp",
+        "width": 351,
+        "height": 1280
+      },
+      "02_hohoemi": {
+        "src": "rei/02_hohoemi.webp",
+        "width": 351,
+        "height": 1280
+      },
+      "04_odoroki": {
+        "src": "rei/04_odoroki.webp",
+        "width": 351,
+        "height": 1280
+      },
+      "05_data_shinken": {
+        "src": "rei/05_data_shinken.webp",
+        "width": 351,
+        "height": 1280
+      },
+      "07_kotoba_erabu": {
+        "src": "rei/07_kotoba_erabu.webp",
+        "width": 351,
+        "height": 1280
+      }
+    },
+    "aliases": {
+      "normal": {
+        "src": "rei/01_suzushii.webp",
+        "width": 351,
+        "height": 1280
+      },
+      "smile": {
+        "src": "rei/02_hohoemi.webp",
+        "width": 351,
+        "height": 1280
+      },
+      "surprise": {
+        "src": "rei/04_odoroki.webp",
+        "width": 351,
+        "height": 1280
+      },
+      "serious": {
+        "src": "rei/05_data_shinken.webp",
+        "width": 351,
+        "height": 1280
+      },
+      "stiff": {
+        "src": "rei/05_data_shinken.webp",
+        "width": 351,
+        "height": 1280
+      },
+      "waver": {
+        "src": "rei/07_kotoba_erabu.webp",
+        "width": 351,
+        "height": 1280
+      }
+    }
+  },
+  "ryoma": {
+    "default": "normal",
+    "rim": "ryoma/rim.webp",
+    "expressions": {
+      "01_tsuujou": {
+        "src": "ryoma/01_tsuujou.webp",
+        "width": 468,
+        "height": 1280
+      },
+      "02_niyari": {
+        "src": "ryoma/02_niyari.webp",
+        "width": 468,
+        "height": 1280
+      },
+      "04_kyuu_magao": {
+        "src": "ryoma/04_kyuu_magao.webp",
+        "width": 468,
+        "height": 1280
+      },
+      "05_shonbori": {
+        "src": "ryoma/05_shonbori.webp",
+        "width": 468,
+        "height": 1280
+      },
+      "06_nakiwarai": {
+        "src": "ryoma/06_nakiwarai.webp",
+        "width": 468,
+        "height": 1280
+      },
+      "07_shinken_ketsui": {
+        "src": "ryoma/07_shinken_ketsui.webp",
+        "width": 468,
+        "height": 1280
+      },
+      "08_terekakushi": {
+        "src": "ryoma/08_terekakushi.webp",
+        "width": 468,
+        "height": 1280
+      },
+      "09_goukyuu": {
+        "src": "ryoma/09_goukyuu.webp",
+        "width": 468,
+        "height": 1280
+      }
+    },
+    "aliases": {
+      "normal": {
+        "src": "ryoma/01_tsuujou.webp",
+        "width": 468,
+        "height": 1280
+      },
+      "grin": {
+        "src": "ryoma/02_niyari.webp",
+        "width": 468,
+        "height": 1280
+      },
+      "serious": {
+        "src": "ryoma/04_kyuu_magao.webp",
+        "width": 468,
+        "height": 1280
+      },
+      "sad": {
+        "src": "ryoma/05_shonbori.webp",
+        "width": 468,
+        "height": 1280
+      },
+      "tearSmile": {
+        "src": "ryoma/06_nakiwarai.webp",
+        "width": 468,
+        "height": 1280
+      },
+      "resolve": {
+        "src": "ryoma/07_shinken_ketsui.webp",
+        "width": 468,
+        "height": 1280
+      },
+      "shy": {
+        "src": "ryoma/08_terekakushi.webp",
+        "width": 468,
+        "height": 1280
+      },
+      "cry": {
+        "src": "ryoma/09_goukyuu.webp",
+        "width": 468,
+        "height": 1280
+      }
+    }
+  },
+  "satou": {
+    "default": "normal",
+    "rim": "satou/rim.webp",
+    "expressions": {
+      "06_hohoemi": {
+        "src": "satou/06_hohoemi.webp",
+        "width": 380,
+        "height": 1280
+      },
+      "08_me_hikari_koraeru": {
+        "src": "satou/08_me_hikari_koraeru.webp",
+        "width": 380,
+        "height": 1280
+      }
+    },
+    "aliases": {
+      "normal": {
+        "src": "satou/08_me_hikari_koraeru.webp",
+        "width": 380,
+        "height": 1280
+      }
+    }
+  },
+  "terachi": {
+    "default": "normal",
+    "rim": "terachi/rim.webp",
+    "expressions": {
+      "08_namida": {
+        "src": "terachi/08_namida.webp",
+        "width": 383,
+        "height": 1280
+      }
+    },
+    "aliases": {
+      "normal": {
+        "src": "terachi/08_namida.webp",
+        "width": 383,
+        "height": 1280
+      }
+    }
+  }
+}

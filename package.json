@@ -1,0 +1,22 @@
+{
+  "name": "hoshikuzu-kissaten",
+  "version": "1.0.0",
+  "private": true,
+  "description": "超感動ノベルゲーム『星屑珈琲』",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "howler": "^2.2.4",
+    "html2canvas": "^1.4.1",
+    "@fontsource/shippori-mincho-b1": "^5.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "vite": "^6.0.0",
+    "@types/howler": "^2.2.12"
+  }
+}

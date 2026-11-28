@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0a0a12" />
+  <meta name="description" content="超感動ノベルゲーム『星屑珈琲』——閉店の決まった小さな喫茶店と、失われていく記憶をめぐる、奇跡のような一杯の物語。" />
+  <title>星屑珈琲 | 超感動ノベルゲーム</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>" />
+</head>
+<body>
+  <div id="viewport">
+    <div id="stage-scale">
+      <div id="stage">
+        <!-- 背景レイヤー（2枚をクロスフェード） -->
+        <div id="bg-layer-a" class="bg-layer"></div>
+        <div id="bg-layer-b" class="bg-layer"></div>
+
+        <!-- CGレイヤー -->
+        <div id="cg-layer"></div>
+
+        <!-- 立ち絵レイヤー -->
+        <div id="sprites">
+          <div class="sprite-slot" id="slot-left"></div>
+          <div class="sprite-slot" id="slot-center"></div>
+          <div class="sprite-slot" id="slot-right"></div>
+        </div>
+
+        <!-- パーティクル/エフェクト -->
+        <canvas id="fx-canvas" width="1920" height="1080"></canvas>
+
+        <!-- 画面効果 -->
+        <div id="flash-layer"></div>
+        <div id="fade-layer"></div>
+        <div id="vignette"></div>
+
+        <!-- チャプターカード -->
+        <div id="chapter-card"><div id="chapter-card-inner"></div></div>
+
+        <!-- HUD -->
+        <div id="hud">
+          <button class="hud-btn" id="hud-menu" data-tip="メニュー">☰<span class="hud-label">MENU</span></button>
+          <button class="hud-btn" id="hud-backlog" data-tip="バックログ">❝<span class="hud-label">LOG</span></button>
+          <button class="hud-btn" id="hud-save" data-tip="セーブ">⛁<span class="hud-label">SAVE</span></button>
+          <button class="hud-btn" id="hud-load" data-tip="ロード">↻<span class="hud-label">LOAD</span></button>
+          <button class="hud-btn" id="hud-auto" data-tip="オート">▶<span class="hud-label">AUTO</span></button>
+          <button class="hud-btn" id="hud-skip" data-tip="スキップ">≫<span class="hud-label">SKIP</span></button>
+          <button class="hud-btn" id="hud-config" data-tip="設定">⚙<span class="hud-label">CONFIG</span></button>
+          <button class="hud-btn" id="hud-fullscreen" data-tip="全画面表示">⛶<span class="hud-label">FULL</span></button>
+        </div>
+
+        <!-- テキストウィンドウ -->
+        <div id="textbox-wrap">
+          <div id="nameplate"><span id="nameplate-text">透</span></div>
+          <div id="textbox">
+            <div id="text-content"></div>
+            <div id="next-indicator">▾</div>
+          </div>
+        </div>
+
+        <!-- トースト -->
+        <div id="toast"></div>
+
+        <!-- 選択肢 -->
+        <div id="choice-layer"></div>
+      </div>
+
+      <!-- タイトル画面 -->
+      <div id="title-screen">
+        <div id="title-bg"></div>
+        <div id="title-gradient"></div>
+        <canvas id="title-stars" width="1920" height="1080"></canvas>
+        <div id="title-inner">
+          <div id="title-logo-block">
+            <div id="title-kicker">— 超感動ノベルゲーム —</div>
+            <h1 id="title-logo">星屑珈琲</h1>
+            <div id="title-sub">Hoshikuzu Kissaten</div>
+            <div id="title-catch">星は消えても、光は残る。</div>
+          </div>
+          <nav id="title-menu">
+            <button class="title-menu-item" id="menu-newgame">はじめから</button>
+            <button class="title-menu-item" id="menu-continue">つづきから</button>
+            <button class="title-menu-item" id="menu-load">ロード</button>
+            <button class="title-menu-item" id="menu-config">設定</button>
+            <button class="title-menu-item" id="menu-gallery">回想</button>
+          </nav>
+          <div id="title-footer">
+            <div id="title-version">ver 1.0.0</div>
+            <div id="title-copyright">© 2026 星屑珈琲製作委員会 All Rights Reserved.</div>
+          </div>
+        </div>
+        <div id="title-skip-hint">CLICK TO START</div>
+      </div>
+
+      <!-- 汎用モーダル -->
+      <div id="modal-root"></div>
+
+      <!-- スタッフロール -->
+      <div id="staffroll" class="hidden">
+        <canvas id="staffroll-stars" width="1920" height="1080"></canvas>
+        <div id="staffroll-track"></div>
+        <button id="staffroll-skip">スキップ ≫</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

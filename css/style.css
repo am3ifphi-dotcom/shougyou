@@ -1,0 +1,175 @@
+/* ============================================================
+   灯りの向こう側 〜桜色の約束〜
+   コンソール/PC商業ゲーム風 UI (1280x720 ステージ)
+   ============================================================ */
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:100%; height:100%; background:#000; overflow:hidden; }
+body { font-family:"Hiragino Mincho ProN","Yu Mincho","MS PMincho",serif; color:#fff;
+  -webkit-user-select:none; user-select:none; }
+#viewport { width:100vw; height:100vh; display:flex; align-items:center; justify-content:center; background:#000; }
+#stage { position:relative; width:1280px; height:720px; flex:none; overflow:hidden; background:#000;
+  transform-origin:center center; box-shadow:0 0 80px rgba(0,0,0,.9); }
+.hidden { display:none !important; }
+
+/* ---------- 背景 ---------- */
+#bg-layer { position:absolute; inset:0; }
+.bg { position:absolute; inset:-24px; background-size:cover; background-position:center;
+  opacity:0; transition:opacity 1.2s ease; will-change:transform,opacity; }
+.bg.on { opacity:1; }
+#bg-tint { position:absolute; inset:0; background:transparent; transition:background 1s ease; pointer-events:none; }
+#bg-tint.night { background:rgba(10,10,50,.35); }
+#bg-tint.warm { background:rgba(255,180,80,.10); }
+#bg-tint.cool { background:rgba(120,160,255,.08); }
+
+/* ---------- キャラ ---------- */
+#chara-layer { position:absolute; inset:0; pointer-events:none; }
+.chara-slot { position:absolute; bottom:0; height:96%; width:420px; margin-left:-210px;
+  opacity:0; transition:opacity .6s ease, transform .8s cubic-bezier(.22,.9,.3,1), filter .4s ease;
+  transform:translateY(40px); }
+.chara-slot.show { opacity:1; transform:translateY(0); }
+#slot-left { left:22%; } #slot-center { left:50%; } #slot-right { left:78%; }
+.chara-slot .chara-img { position:absolute; bottom:0; left:50%; height:100%; width:auto; max-width:none;
+  transform:translateX(-50%); transform-origin:50% 100%; transition:opacity .45s ease; }
+.chara-slot .chara-img.back { opacity:0; }
+.chara-slot .chara-img.front { opacity:1; }
+/* 待機モーション: 呼吸 + ゆらぎ */
+.chara-slot.show .chara-img.front { animation:breathe 3.6s ease-in-out infinite; }
+.chara-slot.show .chara-img.back { animation:breathe 3.6s ease-in-out infinite; }
+@keyframes breathe {
+  0%,100% { transform:translateX(-50%) translateY(0) scaleY(1) rotate(0deg); }
+  50% { transform:translateX(-50%) translateY(-5px) scaleY(1.008) rotate(.35deg); }
+}
+.chara-slot.dim { filter:brightness(.68) saturate(.85); }
+.chara-slot.speaking { filter:brightness(1.07); }
+.chara-slot.speaking .chara-img { animation:breathe 3.6s ease-in-out infinite, talk .5s ease-in-out infinite; }
+@keyframes talk { 0%,100% { margin-bottom:0; } 50% { margin-bottom:3px; } }
+
+/* ---------- 演出 ---------- */
+#fx-canvas { position:absolute; inset:0; pointer-events:none; }
+.letterbox { position:absolute; left:0; right:0; height:0; background:#000; z-index:30; transition:height .9s ease; }
+#letterbox-top { top:0; } #letterbox-bottom { bottom:0; }
+.letterbox.on { height:64px; }
+#vignette { position:absolute; inset:0; pointer-events:none; z-index:25;
+  background:radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.45) 100%);
+  animation:vignetteBreath 7s ease-in-out infinite; }
+@keyframes vignetteBreath { 0%,100% { opacity:.85; } 50% { opacity:1; } }
+#flash { position:absolute; inset:0; background:#fff; opacity:0; pointer-events:none; z-index:66; }
+#fade { position:absolute; inset:0; background:#000; opacity:0; pointer-events:none; z-index:65; transition:opacity .8s ease; }
+#fade.on { opacity:1; }
+
+/* ---------- ゲームUI ---------- */
+#game-ui { position:absolute; inset:0; z-index:50; pointer-events:none; }
+#sys-bar { position:absolute; top:10px; right:12px; display:flex; gap:6px; pointer-events:auto; }
+.sys-btn { background:rgba(10,10,20,.55); border:1px solid rgba(255,255,255,.35); color:#eee;
+  font-family:inherit; font-size:12px; letter-spacing:.12em; padding:6px 10px; cursor:pointer;
+  border-radius:3px; backdrop-filter:blur(4px); transition:all .2s; }
+.sys-btn:hover { background:rgba(255,180,200,.25); border-color:#ffb4c8; }
+.sys-btn.active { background:rgba(255,150,180,.45); border-color:#ff8fb0; color:#fff; }
+#dialogue-box { position:absolute; left:40px; right:40px; bottom:28px; height:168px;
+  background:linear-gradient(180deg, rgba(12,14,28,.82), rgba(8,8,18,.88));
+  border:1px solid rgba(255,255,255,.28); border-radius:6px;
+  box-shadow:0 8px 30px rgba(0,0,0,.55), inset 0 0 40px rgba(255,180,200,.05);
+  padding:34px 44px 20px; pointer-events:auto; }
+#dialogue-box::before { content:""; position:absolute; inset:5px; border:1px solid rgba(255,255,255,.10); border-radius:4px; pointer-events:none; }
+#name-plate { position:absolute; top:-17px; left:36px; min-width:130px; text-align:center;
+  background:linear-gradient(180deg,#3a2a3e,#241a2c); border:1px solid rgba(255,200,220,.55);
+  border-radius:3px; padding:6px 22px; font-size:17px; letter-spacing:.18em; color:#ffe9f0;
+  text-shadow:0 1px 4px rgba(0,0,0,.6); box-shadow:0 3px 10px rgba(0,0,0,.5); }
+#name-plate:empty { display:none; }
+#dialogue-text { font-size:21px; line-height:1.75; letter-spacing:.04em; color:#fdf6ee;
+  text-shadow:0 2px 6px rgba(0,0,0,.7); min-height:74px; white-space:pre-wrap; }
+#next-indicator { position:absolute; right:22px; bottom:12px; font-size:14px; color:#ffd9e6;
+  animation:nextBounce 1s ease-in-out infinite; }
+@keyframes nextBounce { 0%,100% { transform:translateY(0); opacity:.6; } 50% { transform:translateY(4px); opacity:1; } }
+#choice-box { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  display:flex; flex-direction:column; gap:14px; width:560px; pointer-events:auto; }
+.choice-btn { background:linear-gradient(180deg, rgba(30,24,44,.92), rgba(18,14,30,.95));
+  border:1px solid rgba(255,200,220,.5); color:#fff; font-family:inherit; font-size:19px;
+  letter-spacing:.08em; padding:16px 24px; border-radius:4px; cursor:pointer; text-align:center;
+  transition:all .25s; box-shadow:0 6px 20px rgba(0,0,0,.5); }
+.choice-btn:hover, .choice-btn.focus { background:linear-gradient(180deg, rgba(90,40,70,.95), rgba(60,26,50,.95));
+  border-color:#ff9ec0; transform:scale(1.03); box-shadow:0 0 24px rgba(255,150,190,.35); }
+#chapter-card { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  background:rgba(0,0,0,.55); pointer-events:none; z-index:45; }
+#chapter-title { font-size:44px; letter-spacing:.3em; color:#fff; text-shadow:0 0 30px rgba(255,180,210,.8); }
+#chapter-sub { margin-top:14px; font-size:16px; letter-spacing:.5em; color:#ffd9e6; }
+#ending-card { position:absolute; inset:0; z-index:70; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; background:linear-gradient(180deg,rgba(5,4,16,.18),rgba(5,4,16,.75)); pointer-events:auto; animation:endingIn 2s ease both; }
+@keyframes endingIn { from { opacity:0; } to { opacity:1; } }
+#ending-label { font-family:Georgia,serif; font-size:16px; letter-spacing:.55em; color:#ffc0d2; margin-bottom:22px; }
+#ending-title { font-size:54px; letter-spacing:.22em; color:#fff; text-shadow:0 0 32px rgba(255,180,210,.85),0 3px 12px rgba(0,0,0,.8); }
+#ending-sub { margin-top:16px; font-size:19px; letter-spacing:.34em; color:#ffe9f0; }
+#ending-text { margin-top:28px; font-size:17px; letter-spacing:.16em; color:rgba(255,255,255,.82); }
+#ending-button { margin-top:54px; padding:12px 50px; font-family:inherit; font-size:15px; letter-spacing:.3em; color:#fff; background:rgba(30,18,40,.72); border:1px solid rgba(255,200,220,.6); border-radius:3px; cursor:pointer; transition:all .25s; }
+#ending-button:hover { background:rgba(150,60,100,.6); box-shadow:0 0 28px rgba(255,150,190,.35); }
+#auto-indicator { position:absolute; left:20px; bottom:220px; font-size:13px; letter-spacing:.2em;
+  color:#ffd9e6; background:rgba(0,0,0,.4); padding:4px 10px; border-radius:3px; }
+
+/* ---------- タイトル ---------- */
+#title-screen { position:absolute; inset:0; z-index:60; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; }
+#title-screen::after { content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(180deg, rgba(0,0,0,.25), transparent 30%, transparent 62%, rgba(0,0,0,.55)); }
+#title-logo { text-align:center; margin-bottom:54px; position:relative; z-index:2;
+  animation:logoFloat 6s ease-in-out infinite; }
+@keyframes logoFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-8px); } }
+#title-sub { font-size:20px; letter-spacing:.9em; color:#ffe3ee; text-shadow:0 2px 12px rgba(0,0,0,.8); margin-bottom:10px; }
+#title-main { font-size:76px; font-weight:600; letter-spacing:.14em; color:#fff;
+  text-shadow:0 0 40px rgba(255,170,200,.85), 0 4px 18px rgba(0,0,0,.8); }
+#title-en { margin-top:12px; font-size:14px; letter-spacing:.7em; color:#cfe0ff; text-shadow:0 2px 8px rgba(0,0,0,.8); }
+#title-menu { display:flex; flex-direction:column; gap:10px; width:300px; position:relative; z-index:2; }
+.title-btn { background:linear-gradient(90deg, transparent, rgba(10,10,24,.72) 18%, rgba(10,10,24,.72) 82%, transparent);
+  border:none; border-top:1px solid rgba(255,255,255,.14); border-bottom:1px solid rgba(255,255,255,.14);
+  color:#f2e9e4; font-family:inherit; font-size:21px; letter-spacing:.4em; padding:13px 0 13px .4em;
+  cursor:pointer; transition:all .25s; text-shadow:0 2px 6px rgba(0,0,0,.8); }
+.title-btn:hover, .title-btn.focus { color:#fff; letter-spacing:.55em;
+  background:linear-gradient(90deg, transparent, rgba(150,60,100,.55) 18%, rgba(150,60,100,.55) 82%, transparent);
+  text-shadow:0 0 18px rgba(255,170,200,.9); }
+.title-btn.disabled { opacity:.35; pointer-events:none; }
+#title-footer { position:absolute; bottom:16px; left:0; right:0; display:flex; justify-content:space-between;
+  padding:0 22px; font-size:12px; letter-spacing:.15em; color:rgba(255,255,255,.65); z-index:2; }
+#title-hint { position:absolute; bottom:44px; font-size:12px; letter-spacing:.25em; color:rgba(255,255,255,.55); z-index:2; }
+
+/* ---------- ブート ---------- */
+#boot-screen { position:absolute; inset:0; z-index:100; background:#000; display:flex;
+  flex-direction:column; align-items:center; justify-content:center; gap:26px; }
+#boot-logo { font-size:44px; letter-spacing:.35em; color:#ffe9f2; opacity:0; animation:bootFade 1.2s ease forwards; }
+#boot-logo span { display:block; font-size:13px; letter-spacing:.6em; color:#9fb4d8; margin-top:10px; text-align:center; }
+@keyframes bootFade { to { opacity:1; } }
+#boot-bar { width:320px; height:3px; background:rgba(255,255,255,.15); border-radius:2px; overflow:hidden; }
+#boot-fill { height:100%; width:0; background:linear-gradient(90deg,#ff9ec0,#ffd9e6); transition:width .3s ease; }
+#boot-text { font-size:12px; letter-spacing:.5em; color:rgba(255,255,255,.5); }
+
+/* ---------- モーダル ---------- */
+#modal { position:absolute; inset:0; z-index:80; background:rgba(0,0,0,.62); display:flex;
+  align-items:center; justify-content:center; backdrop-filter:blur(3px); }
+#modal-panel { width:760px; max-height:560px; background:linear-gradient(180deg,#1c1830,#12101f);
+  border:1px solid rgba(255,200,220,.4); border-radius:6px; padding:28px 34px; display:flex; flex-direction:column;
+  box-shadow:0 20px 60px rgba(0,0,0,.7); }
+#modal-title { font-size:22px; letter-spacing:.35em; color:#ffe9f0; border-bottom:1px solid rgba(255,255,255,.15);
+  padding-bottom:12px; margin-bottom:16px; }
+#modal-body { overflow-y:auto; flex:1; min-height:200px; }
+#modal-close { margin-top:16px; align-self:center; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.35);
+  color:#fff; font-family:inherit; font-size:14px; letter-spacing:.3em; padding:9px 34px; cursor:pointer; border-radius:3px; }
+#modal-close:hover { background:rgba(255,150,180,.3); }
+.save-slot { display:flex; gap:14px; align-items:center; padding:10px; border:1px solid rgba(255,255,255,.12);
+  border-radius:4px; margin-bottom:8px; cursor:pointer; transition:all .2s; }
+.save-slot:hover { border-color:#ff9ec0; background:rgba(255,150,180,.08); }
+.save-slot img { width:150px; height:84px; object-fit:cover; border-radius:3px; background:#222; }
+.save-slot .slot-info { font-size:13px; line-height:1.7; color:#ddd; }
+.save-slot .slot-date { color:#9fb4d8; font-size:12px; }
+.save-slot.empty { opacity:.45; cursor:default; }
+.backlog-line { padding:8px 4px; border-bottom:1px solid rgba(255,255,255,.07); font-size:15px; line-height:1.7; }
+.backlog-line .bl-name { color:#ffb4c8; letter-spacing:.1em; margin-right:10px; }
+.config-row { display:flex; align-items:center; justify-content:space-between; padding:12px 4px;
+  border-bottom:1px solid rgba(255,255,255,.08); font-size:15px; letter-spacing:.1em; }
+.config-row input[type=range] { width:220px; accent-color:#ff8fb0; }
+.config-row select { background:#241d38; color:#fff; border:1px solid rgba(255,255,255,.3);
+  font-family:inherit; padding:5px 10px; border-radius:3px; }
+.gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.gallery-item { position:relative; }
+.gallery-item img { width:100%; height:120px; object-fit:cover; border-radius:4px; border:1px solid rgba(255,255,255,.2); }
+.gallery-item .g-label { font-size:12px; letter-spacing:.15em; margin-top:5px; color:#ffd9e6; text-align:center; }
+.gallery-item.locked img { filter:grayscale(1) brightness(.4); }
+.gallery-item.locked .g-label { color:#888; }
+#modal-body::-webkit-scrollbar { width:8px; }
+#modal-body::-webkit-scrollbar-thumb { background:rgba(255,150,180,.4); border-radius:4px; }

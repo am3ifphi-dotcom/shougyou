@@ -81,6 +81,7 @@
     stage.addEventListener('click', e => {
       if (e.target.closest('button, input, select, #modal, #choice-box')) return;
       if (!titleScreen.classList.contains('hidden') || bootDone === false) return;
+      if (!choiceBox.classList.contains('hidden')) return;
       advance();
     });
     document.addEventListener('keydown', onKey);
@@ -318,7 +319,7 @@
     processActions();
   }
   function advance() {
-    if (state.ending || busy) return;
+    if (state.ending || busy || !choiceBox.classList.contains('hidden')) return;
     AudioSys.init();
     if (typing) { finishTyping(); return; }
     if (waiting) { waiting = false; AudioSys.pageSE(); processActions(); return; }
